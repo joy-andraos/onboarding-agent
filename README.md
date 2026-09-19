@@ -1,12 +1,4 @@
-```bash
-uv init
-```
-
-```bash
-uv add "mcp[cli]" fastapi uvicorn requests anthropic python-dotenv
-```
-
-# Codebase Onboarder
+## Project summary
 
 An MCP server + Agent Skill that turns "I just joined this repo, where do I even start" into a structured onboarding doc.
 
@@ -15,12 +7,22 @@ An MCP server + Agent Skill that turns "I just joined this repo, where do I even
   - `get_readme(owner, repo, branch="main")` — the decoded README
 - **Skill** (`skills/codebase-onboarding/SKILL.md`) tells Claude how to turn that raw data into a genuinely useful onboarding doc: a fixed structure (what it does → where to start reading → key abstractions → gotchas → suggested first task), with rules against generic AI-summary filler.
 
-## Setup
+## Local Setup
 
 ```bash
 uv sync
+```
+```bash
 source .venv/bin/activate
+```
+```bash
 uvicorn main:app --reload
+```
+```bash
+uv init
+```
+```bash
+uv add "mcp[cli]" fastapi uvicorn requests anthropic python-dotenv
 ```
 
 Optional: set `GITHUB_TOKEN` to raise GitHub's rate limit (60 req/hr unauthenticated) or to access private repos you have access to.
