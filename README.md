@@ -28,37 +28,3 @@ Optional: set `GITHUB_TOKEN` to raise GitHub's rate limit (60 req/hr unauthentic
 ```bash
 export GITHUB_TOKEN=ghp_your_token_here
 ```
-
-## Running it in Claude Desktop
-
-Add to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "codebase-onboarder": {
-      "command": "python",
-      "args": ["/absolute/path/to/codebase-onboarder/mcp_server/server.py"],
-      "env": {
-        "GITHUB_TOKEN": "ghp_your_token_here"
-      }
-    }
-  }
-}
-```
-
-Restart Claude Desktop, then add the `codebase-onboarding` skill (copy the `skills/codebase-onboarding/` folder into your skills directory, or use the "Save skill" flow if you generated it via Claude.ai).
-
-## Try it
-
-Once connected, ask Claude something like:
-
-> "Onboard me onto the repo anthropics/anthropic-sdk-python"
-
-Claude will pull the file tree + README via MCP, then follow the skill's structure to produce a scannable onboarding doc instead of a generic summary.
-
-## Next steps (v2 ideas)
-
-- Add `get_recent_commits` and `get_open_issues` tools for "what's changing" and "good first issue" signal
-- Add `get_file_content` so Claude can drill into a specific file it flagged as important
-- Wrap in a small CLI (`python cli.py owner/repo`) so it's demoable without Claude Desktop
